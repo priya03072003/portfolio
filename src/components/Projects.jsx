@@ -14,7 +14,7 @@ const ProjectCard = ({ project }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       layout
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -22,20 +22,20 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.4, type: "spring" }}
       className="group flex flex-col bg-[var(--surface-color)] border border-[var(--border-color)] hover:border-[var(--color-primary)] rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all h-full z-10"
     >
-      
+
       {/* Responsive Media Carousel */}
       <div className="relative w-full h-64 bg-[var(--border-color)] overflow-hidden group-hover:brightness-110 transition-all">
-        
+
         {/* Manual Scroll Controls (Desktop Friendly) */}
         {project.media.length > 1 && (
           <>
-            <button 
+            <button
               onClick={scrollLeft}
               className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-[var(--bg-color)]/70 backdrop-blur-md rounded-full flex items-center justify-center text-[var(--text-primary)] shadow-lg border border-[var(--border-color)] hover:bg-[var(--color-primary)] hover:text-white transition-colors cursor-none opacity-0 group-hover:opacity-100"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <button 
+            <button
               onClick={scrollRight}
               className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-[var(--bg-color)]/70 backdrop-blur-md rounded-full flex items-center justify-center text-[var(--text-primary)] shadow-lg border border-[var(--border-color)] hover:bg-[var(--color-primary)] hover:text-white transition-colors cursor-none opacity-0 group-hover:opacity-100"
             >
@@ -45,28 +45,28 @@ const ProjectCard = ({ project }) => {
         )}
 
         {/* Scroll Container */}
-        <div 
+        <div
           ref={carouselRef}
           className="flex w-full h-full overflow-x-auto snap-x snap-mandatory hide-scroll-bar scroll-smooth"
         >
           {project.media.map((mediaItem, mIdx) => (
             <div key={mIdx} className="w-full h-full flex-shrink-0 snap-center relative">
               {mediaItem.type === 'image' ? (
-                <img 
-                  src={mediaItem.url} 
+                <img
+                  src={mediaItem.url}
                   alt={`${project.title} - ${mIdx}`}
                   loading="lazy"
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <video 
+                <video
                   src={mediaItem.url}
                   autoPlay loop muted playsInline
                   className="w-full h-full object-cover"
                 />
               )}
               <div className="absolute top-4 left-4 bg-[var(--bg-color)]/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 text-[var(--text-primary)] text-xs font-bold border border-[var(--border-color)] z-20 shadow-sm pointer-events-none">
-                {mediaItem.type === 'image' ? <ImageIcon className="w-3 h-3"/> : <Video className="w-3 h-3"/>}
+                {mediaItem.type === 'image' ? <ImageIcon className="w-3 h-3" /> : <Video className="w-3 h-3" />}
                 {mIdx + 1}/{project.media.length}
               </div>
             </div>
@@ -80,7 +80,7 @@ const ProjectCard = ({ project }) => {
         <p className="text-sm text-[var(--text-secondary)] mb-8 leading-relaxed font-medium flex-grow">
           {project.desc}
         </p>
-        
+
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tags.map(tag => (
             <span key={tag} className="text-xs font-bold px-3 py-1.5 rounded-lg bg-[var(--bg-color)] border border-[var(--border-color)] text-[var(--text-primary)]">
@@ -88,15 +88,15 @@ const ProjectCard = ({ project }) => {
             </span>
           ))}
         </div>
-        
+
         <div className="flex items-center gap-4 pt-6 border-t border-[var(--border-color)]">
-          <a 
+          <a
             href={project.link} target="_blank" rel="noreferrer"
             className="flex-1 inline-flex items-center justify-center py-3 rounded-2xl text-sm font-bold bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white shadow-lg hover:opacity-90 hover:scale-[1.02] transition-all cursor-none"
           >
             View Live <ExternalLink className="w-4 h-4 ml-2" />
           </a>
-          <a 
+          <a
             href={project.github} target="_blank" rel="noreferrer"
             className="w-12 h-12 inline-flex items-center justify-center rounded-2xl bg-[var(--bg-color)] border border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all hover:scale-[1.02] cursor-none"
           >
@@ -124,9 +124,9 @@ const Projects = () => {
       github: "#",
       tags: ["Figma", "UI/UX", "Prototyping", "Animation"],
       media: [
-        { type: 'image', url: 'https://images.unsplash.com/photo-1555500913-9a3d463dbeb9?w=800&q=80' },
-        { type: 'image', url: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=800&q=80' },
-        { type: 'image', url: 'https://images.unsplash.com/photo-1592394533824-9440e5d68530?w=800&q=80' }
+        { type: 'image', url: '/donut1.png' },
+        { type: 'image', url: '/donut2.png' },
+        { type: 'image', url: '/donut.png' }
       ]
     },
     {
@@ -157,19 +157,19 @@ const Projects = () => {
     }
   ];
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-color)] min-h-screen">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <div className="mb-16 md:text-center" data-aos="fade-up">
           <h2 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Featured Projects</h2>
           <div className="w-24 h-1.5 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] md:mx-auto rounded-full mb-12"></div>
-          
+
           {/* Framer Motion Layout Filters */}
           <div className="flex flex-wrap items-center justify-start md:justify-center gap-4 bg-[var(--surface-color)] p-2 rounded-[2rem] border border-[var(--border-color)] w-max mx-auto overflow-hidden shadow-sm">
             {categories.map((cat) => (
@@ -200,7 +200,7 @@ const Projects = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-        
+
         {filteredProjects.length === 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20 bg-[var(--surface-color)] rounded-3xl border border-[var(--border-color)]">
             <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">No projects found.</h3>

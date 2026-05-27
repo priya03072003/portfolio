@@ -5,49 +5,27 @@ const Skills = () => {
     {
       title: "Frontend",
       icon: <Layout className="w-6 h-6" />,
-      skills: [
-        { name: "React", level: 90 },
-        { name: "HTML/CSS", level: 95 },
-        { name: "Tailwind CSS v4", level: 85 },
-        { name: "JavaScript", level: 90 },
-      ]
+      skills: ["React JS", "Redux", "Tailwind CSS v4", "JavaScript"]
     },
     {
       title: "Backend",
       icon: <Server className="w-6 h-6" />,
-      skills: [
-        { name: "Node.js", level: 80 },
-        { name: "Express", level: 75 },
-        { name: "PostgreSQL", level: 70 },
-        { name: "MongoDB", level: 75 },
-      ]
+      skills: ["Django", "PostgreSQL"]
     },
     {
       title: "Languages",
       icon: <Code2 className="w-6 h-6" />,
-      skills: [
-        { name: "JavaScript/TS", level: 85 },
-        { name: "Python", level: 80 },
-        { name: "C / C++", level: 75 },
-      ]
+      skills: ["JavaScript/TS", "Python"]
     },
     {
-      title: "DevOps & Tools",
+      title: "DevOps",
       icon: <Cloud className="w-6 h-6" />,
-      skills: [
-        { name: "Git & GitHub", level: 85 },
-        { name: "Figma", level: 90 },
-        { name: "Linux", level: 70 },
-      ]
+      skills: ["Git & GitHub", "Gitlab", "Jenkins", "Sonarcube"]
     },
     {
-      title: "AI & Data Science",
-      icon: <Brain className="w-6 h-6" />,
-      skills: [
-        { name: "Machine Learning", level: 70 },
-        { name: "Data Analysis", level: 75 },
-        { name: "OpenCV", level: 65 },
-      ]
+      title: "Tools",
+      icon: <Cloud className="w-6 h-6" />,
+      skills: ["N8N", "Figma", "Linux", "Postman", "VS Code"]
     }
   ];
 
@@ -61,7 +39,7 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {skillCategories.map((category, idx) => (
-            <div 
+            <div
               key={idx}
               data-aos="fade-up"
               data-aos-delay={idx * 100}
@@ -76,20 +54,11 @@ const Skills = () => {
 
               <div className="space-y-4 md:space-y-5">
                 {category.skills.map((skill, sIdx) => (
-                  <div key={sIdx}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-semibold flex items-center gap-2 text-[var(--text-primary)]">
-                        <CheckCircle2 className="w-4 h-4 text-[var(--color-secondary)]" /> 
-                        {skill.name}
-                      </span>
-                      <span className="text-xs font-bold text-[var(--text-secondary)]">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-[var(--bg-color)] rounded-full h-2.5 border border-[var(--border-color)] overflow-hidden">
-                      <div 
-                        className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] h-2.5 rounded-full" 
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                  <div key={sIdx} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[var(--color-secondary)]" />
+                    <span className="text-sm md:text-base font-semibold text-[var(--text-primary)]">
+                      {skill}
+                    </span>
                   </div>
                 ))}
               </div>
