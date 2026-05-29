@@ -16,8 +16,7 @@ const ProjectCard = ({ project }) => {
           <>
             <button onClick={scrollLeft} className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-[var(--bg-color)]/70 backdrop-blur-md rounded-full flex items-center justify-center text-[var(--text-primary)] shadow-lg border border-[var(--border-color)] hover:bg-[var(--color-primary)] hover:text-white transition-colors cursor-none opacity-0 group-hover:opacity-100"> <ChevronLeft className="w-6 h-6" />
             </button>
-            <button onClick={scrollRight} className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-[var(--bg-color)]/70 backdrop-blur-md rounded-full flex items-center justify-center text-[var(--text-primary)] shadow-lg border border-[var(--border-color)] hover:bg-[var(--color-primary)] hover:text-white transition-colors cursor-none opacity-0 group-hover:opacity-100"><ChevronRight className="w-6 h-6" />
-            </button>
+            <button onClick={scrollRight} className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-[var(--bg-color)]/70 backdrop-blur-md rounded-full flex items-center justify-center text-[var(--text-primary)] shadow-lg border border-[var(--border-color)] hover:bg-[var(--color-primary)] hover:text-white transition-colors cursor-none opacity-0 group-hover:opacity-100"><ChevronRight className="w-6 h-6" /></button>
           </>
         )}
         {/* Scroll Container */}
@@ -90,6 +89,20 @@ const Projects = () => {
     },
     {
       id: 3,
+      title: "Gold Bullion Market Analytics Platform",
+      category: "Full Stack",
+      desc: "Real-time bullion trading and portfolio analytics platform for monitoring live gold and silver market prices, comparing rates across multiple bullion sites, tracking holdings, and analyzing profit/loss performance through interactive dashboards and charts.",
+      link: "http://www.shivamtraders.online/",
+      github: "#",
+      tags: ["React", "Redux Toolkit", "Django", "REST API"],
+      media: [
+        { type: 'image', url: '/gold1.png' },
+        { type: 'image', url: '/gold2.png' },
+        { type: 'image', url: '/gold3.png' },
+      ]
+    },
+    {
+      id: 4,
       title: "Crop Disease Vision API",
       category: "AI",
       desc: "Machine learning pipeline to classify crop diseases via CNNs. Extracted data points served through Flask.",
