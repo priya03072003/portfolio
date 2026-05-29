@@ -11,8 +11,8 @@ const Navbar = ({ setTheme, currentTheme }) => {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Internships', href: '#internships' },
+    { name: 'Education', href: '#experience' },
+    { name: 'Experience', href: '#internships' },
     { name: 'Contact', href: '#contact' },
   ];
 

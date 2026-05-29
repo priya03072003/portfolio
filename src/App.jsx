@@ -9,6 +9,7 @@ import Internships from './components/Internships';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import BackgroundAnimation from './components/BackgroundAnimation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { themeTokens } from './themes.js';
@@ -50,6 +51,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-primary)] transition-colors duration-500 relative overflow-x-hidden">
+      
+      {/* Global Background Animation */}
+      <BackgroundAnimation />
+
       {/* Hide Custom Cursor on smaller devices (usually missing hover mechanics) */}
       <div className="hidden md:block">
         <CustomCursor />

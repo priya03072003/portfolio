@@ -2,17 +2,45 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useState } from 'react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', role: '', query: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', role: '', query: '' });
+  const [status, setStatus] = useState('idle');
 
-  const handleMailTo = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.query) return;
-    const subject = encodeURIComponent(`Portfolio Query from ${formData.name} - ${formData.role}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nRole: ${formData.role}\n\nQuery:\n${formData.query}`);
-    window.location.href = `mailto:priyaprakasam45@gmail.com?subject=${subject}&body=${body}`;
-    setFormData({ name: '', role: '', query: '' });
-  };
+    if (!formData.name || !formData.email || !formData.query) return;
 
+    setStatus('loading');
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          // Replace this with your Web3Forms access key
+          access_key: "b60a245b-6223-4fdb-ba49-0771945fbaf3",
+          subject: `New Portfolio Query from ${formData.name}`,
+          name: formData.name,
+          email: formData.email,
+          role: formData.role || 'Not specified',
+          message: formData.query,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', role: '', query: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
   return (
     <section id="contact" className="py-16 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--bg-color)] relative overflow-hidden">
 
@@ -72,7 +100,7 @@ const Contact = () => {
             </h3>
             <p className="text-[var(--text-secondary)] mb-6 md:mb-8 text-sm font-medium">Send directly to my email client using the form below.</p>
 
-            <form onSubmit={handleMailTo} className="space-y-5 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-[var(--text-primary)] pl-1">Your Name</label>
@@ -85,15 +113,26 @@ const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-[var(--text-primary)] pl-1">Your Role</label>
+                  <label className="text-sm font-bold text-[var(--text-primary)] pl-1">Your Email</label>
                   <input
-                    type="text"
-                    placeholder="Recruiter / Founder"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    type="email" required
+                    placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all cursor-none"
                   />
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-[var(--text-primary)] pl-1">Your Role (Optional)</label>
+                <input
+                  type="text"
+                  placeholder="Recruiter / Founder"
+                  value={formData.role}
+                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  className="w-full bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all cursor-none"
+                />
               </div>
 
               <div className="space-y-2">
@@ -109,10 +148,18 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 md:py-4 rounded-xl font-bold bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-3 shadow-lg shadow-[var(--color-primary)]/20 cursor-none text-sm md:text-base"
+                disabled={status === 'loading'}
+                className="w-full py-3 md:py-4 rounded-xl font-bold bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-3 shadow-lg shadow-[var(--color-primary)]/20 cursor-none text-sm md:text-base disabled:opacity-50"
               >
-                Send Message via Email <Send className="w-4 h-4 md:w-5 md:h-5" />
+                {status === 'loading' ? 'Sending...' : 'Send Message'} <Send className="w-4 h-4 md:w-5 md:h-5" />
               </button>
+
+              {status === 'success' && (
+                <p className="text-green-500 font-bold text-center text-sm mt-4">Message sent successfully! I'll get back to you soon.</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 font-bold text-center text-sm mt-4">Failed to send message. Please try emailing me directly.</p>
+              )}
             </form>
           </div>
 

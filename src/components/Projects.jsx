@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Code, ChevronRight, ChevronLeft, Image as ImageIcon, Video } from 'lucide-react';
+import { ExternalLink, Code, ChevronRight, ChevronLeft, Image as ImageIcon, Video, X } from 'lucide-react';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onMediaClick }) => {
   const carouselRef = useRef(null);
   const scrollLeft = () => { if (carouselRef.current) carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' }); };
   const scrollRight = () => { if (carouselRef.current) carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' }); };
@@ -24,9 +24,9 @@ const ProjectCard = ({ project }) => {
           {project.media.map((mediaItem, mIdx) => (
             <div key={mIdx} className="w-full h-full flex-shrink-0 snap-center relative">
               {mediaItem.type === 'image' ? (
-                <img src={mediaItem.url} alt={`${project.title} - ${mIdx}`} loading="lazy" className="w-full h-full object-cover" />
+                <img onClick={() => onMediaClick({ project, index: mIdx })} src={mediaItem.url} alt={`${project.title} - ${mIdx}`} loading="lazy" className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-500" />
               ) : (
-                <video src={mediaItem.url} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                <video onClick={() => onMediaClick({ project, index: mIdx })} src={mediaItem.url} autoPlay loop muted playsInline className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-500" />
               )}
               <div className="absolute top-4 left-4 bg-[var(--bg-color)]/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 text-[var(--text-primary)] text-xs font-bold border border-[var(--border-color)] z-20 shadow-sm pointer-events-none">{mediaItem.type === 'image' ? <ImageIcon className="w-3 h-3" /> : <Video className="w-3 h-3" />} {mIdx + 1}/{project.media.length}
               </div>
@@ -57,6 +57,7 @@ const ProjectCard = ({ project }) => {
 };
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedMedia, setSelectedMedia] = useState(null);
   const categories = ['All', 'Fullstack', 'DevOps', 'others'];
   const projects = [
     {
@@ -90,10 +91,10 @@ const Projects = () => {
     {
       id: 3,
       title: "Gold Bullion Market Analytics Platform",
-      category: "Full Stack",
-      desc: "Real-time bullion trading and portfolio analytics platform for monitoring live gold and silver market prices, comparing rates across multiple bullion sites, tracking holdings, and analyzing profit/loss performance through interactive dashboards and charts.",
+      category: "Fullstack",
+      desc: "Enterprise-grade bullion trading and market intelligence platform developed for tracking, analyzing, and managing precious metal investments in real time. The application delivers live gold and silver bid/ask prices with dynamic updates, advanced candlestick market charts, historical data visualization, and detailed market analytics for smarter trading decisions. Users can compare bullion prices from multiple trading platforms and vendors through a centralized comparison dashboard, helping identify the best buying and selling opportunities instantly. The platform also includes a comprehensive portfolio management system that enables users to add holdings, monitor investment performance, calculate real-time profit/loss, and track total asset value across gold and silver investments.",
       link: "http://www.shivamtraders.online/",
-      github: "#",
+      github: "",
       tags: ["React", "Redux Toolkit", "Django", "REST API"],
       media: [
         { type: 'image', url: '/gold1.png' },
@@ -103,17 +104,47 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: "Crop Disease Vision API",
-      category: "AI",
-      desc: "Machine learning pipeline to classify crop diseases via CNNs. Extracted data points served through Flask.",
-      link: "#",
-      github: "#",
-      tags: ["Python", "TensorFlow", "Flask", "OpenCV"],
+      title: "MultiBranch CI/CD Pipeline",
+      category: "DevOps",
+      desc: "Designed and implemented an end-to-end CI/CD automation pipeline using Jenkins Multibranch Pipeline architecture with Jenkinsfile-based configuration for streamlined build and deployment workflows. Integrated GitLab as the centralized source code repository to automatically trigger pipelines based on branch activities such as feature, development, and production branches. \n\nConfigured SonarQube for continuous static code analysis, security scanning, bug detection, and code quality validation. Implemented Quality Gate checks to ensure that only code meeting defined quality standards proceeds to the deployment stage, improving application reliability and maintainability.",
+      link: "https://www.linkedin.com/posts/priya-prakasam-524670269_devops-jenkins-cicd-activity-7450600913481732096-l6Od?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHFkewBZ9UmfxKJ2N5WtgMv_RtwXzqRKoQ",
+      github: "",
+      tags: ["Jenkins", "CI/CD", "Multi-branch", "DevOps", "Sonarqube", "Gitlab"],
       media: [
-        { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
-        { type: 'image', url: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80' }
+        { type: 'image', url: '/devops1.png' },
+        { type: 'image', url: '/devops2.png' },
+        { type: 'image', url: '/devops3.png' },
       ]
-    }
+    },
+    {
+      id: 5,
+      title: "AI-Powered Job Search Automation",
+      category: "others",
+      desc: "Intelligent job search automation workflow built with n8n that eliminates the manual effort of hunting for relevant job listings. Users upload their resume, skills list, or job roles document through a web form, and the pipeline automatically parses the file, extracts key skills and job titles using Gemini AI, and simultaneously scrapes matching job listings from LinkedIn via Apify and Naukri via JSearch API. The workflow normalizes results from both platforms, merges them into a unified job list, and delivers a beautifully formatted HTML email directly to the user's inbox — all without any manual searching. The system intelligently handles multiple file formats including PDF, DOCX, and TXT, adapts results based on experience level and preferred location, and uses AI-driven keyword extraction to maximise job match relevance.",
+      link: "https://www.linkedin.com/posts/priya-prakasam-524670269_n8n-automation-ai-ugcPost-7464200641821708288-inN3/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHFkewBZ9UmfxKJ2N5WtgMv_RtwXzqRKoQ",
+      github: "",
+      tags: ["n8n", "Gemini AI", "Apify", "LinkedIn Scraper", "JSearch API", "Workflow Automation"],
+      media: [
+        { type: 'image', url: '/n8n1.png' },
+        { type: 'image', url: '/n8n2.png' },
+        { type: 'image', url: '/n8n3.png' },
+      ]
+
+    },
+    // {
+    //   id: 5,
+    //   title: "Gold Bullion Market Analytics Platform",
+    //   category: "Full Stack",
+    //   desc: "Enterprise-grade bullion trading and market intelligence platform developed for tracking, analyzing, and managing precious metal investments in real time. The application delivers live gold and silver bid/ask prices with dynamic updates, advanced candlestick market charts, historical data visualization, and detailed market analytics for smarter trading decisions. Users can compare bullion prices from multiple trading platforms and vendors through a centralized comparison dashboard, helping identify the best buying and selling opportunities instantly. The platform also includes a comprehensive portfolio management system that enables users to add holdings, monitor investment performance, calculate real-time profit/loss, and track total asset value across gold and silver investments.",
+    //   link: "https://www.linkedin.com/posts/priya-prakasam-524670269_n8n-automation-ai-ugcPost-7464200641821708288-inN3/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHFkewBZ9UmfxKJ2N5WtgMv_RtwXzqRKoQ",
+    //   github: "",
+    //   tags: ["React", "Redux Toolkit", "Django", "REST API"],
+    //   media: [
+    //     { type: 'image', url: '/gold1.png' },
+    //     { type: 'image', url: '/gold2.png' },
+    //     { type: 'image', url: '/gold3.png' },
+    //   ]
+    // },
   ];
   const filteredProjects = activeFilter === 'All' ? projects : projects.filter(project => project.category === activeFilter); return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-color)] min-h-screen">
@@ -137,7 +168,7 @@ const Projects = () => {
         {/* Projects Grid with AnimatePresence */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (<ProjectCard key={project.id} project={project} />))}
+            {filteredProjects.map((project) => (<ProjectCard key={project.id} project={project} onMediaClick={setSelectedMedia} />))}
           </AnimatePresence>
         </motion.div>
         {filteredProjects.length === 0 && (
@@ -146,6 +177,79 @@ const Projects = () => {
             <p className="text-[var(--text-secondary)]">Try selecting a different category.</p>
           </motion.div>
         )}
+        <AnimatePresence>
+          {selectedMedia && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedMedia(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+              style={{ margin: 0 }}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative max-w-7xl w-full max-h-[90vh] flex items-center justify-center group"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setSelectedMedia(null)}
+                  className="absolute -top-12 right-0 text-white hover:text-[var(--color-primary)] transition-colors p-2 z-[60]"
+                >
+                  <X className="w-8 h-8" />
+                </button>
+
+                {selectedMedia.project.media.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedMedia(prev => ({ ...prev, index: prev.index === 0 ? prev.project.media.length - 1 : prev.index - 1 }));
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] w-12 h-12 bg-black/50 hover:bg-[var(--color-primary)] rounded-full flex items-center justify-center text-white backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100"
+                    >
+                      <ChevronLeft className="w-8 h-8" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedMedia(prev => ({ ...prev, index: prev.index === prev.project.media.length - 1 ? 0 : prev.index + 1 }));
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] w-12 h-12 bg-black/50 hover:bg-[var(--color-primary)] rounded-full flex items-center justify-center text-white backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100"
+                    >
+                      <ChevronRight className="w-8 h-8" />
+                    </button>
+                  </>
+                )}
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedMedia.index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center justify-center w-full h-full"
+                  >
+                    {selectedMedia.project.media[selectedMedia.index].type === 'image' ? (
+                      <img src={selectedMedia.project.media[selectedMedia.index].url} alt="Preview" className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl" />
+                    ) : (
+                      <video src={selectedMedia.project.media[selectedMedia.index].url} controls autoPlay className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl" />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+
+                {selectedMedia.project.media.length > 1 && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-bold z-[60]">
+                    {selectedMedia.index + 1} / {selectedMedia.project.media.length}
+                  </div>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
