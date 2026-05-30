@@ -1,4 +1,5 @@
 import { ArrowRight, Download, Link, Code, Terminal } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
@@ -99,24 +100,27 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#contact"
+              href="https://drive.google.com/uc?export=download&id=1w5gJf6MvSavQdLt8mpXabZUSmYPCAAnC" download
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[var(--border-color)] hover:border-[var(--color-primary)] text-[var(--text-primary)] font-bold flex items-center justify-center gap-2 hover:bg-[var(--surface-color)] transition-colors cursor-none"
             >
               Resume <Download className="w-5 h-5" />
             </motion.a>
 
             {/* Social Links */}
-            <div className="flex items-center gap-3 sm:gap-4 sm:ml-2 sm:pl-4 sm:border-l border-[var(--border-color)]">
+            {/* <div className="flex items-center gap-3 sm:gap-4 sm:ml-2 sm:pl-4 sm:border-l border-[var(--border-color)]">
               <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
                 <Link className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
               <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
                 <Code className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-secondary)] hover:border-[var(--color-secondary)] transition-colors shadow-sm cursor-none">
-                <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.a>
-            </div>
+                <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-secondary)] hover:border-[var(--color-secondary)] transition-colors shadow-sm cursor-none">
+                  <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.a>
+                <motion.a whileHover={{ scale: 1.1, y: -2 }} href="https://github.com/DigiDuchess/" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[#000] hover:border-[#000] transition-colors shadow-sm cursor-none">
+                  <FaGithub className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.a>
+            </div> */}
           </motion.div>
         </div>
 
@@ -157,7 +161,7 @@ const Hero = () => {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute bottom-2 left-0 sm:bottom-4 sm:-left-6 lg:-left-12 bg-[var(--surface-color)]/95 backdrop-blur-md border border-[var(--border-color)] px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl z-20"
             >
-              <p className="text-[11px] sm:text-sm font-bold text-[var(--color-primary)] whitespace-nowrap">Full Stack Developer</p>
+              <p className="text-[11px] sm:text-sm font-bold text-[var(--color-primary)] whitespace-nowrap">Full Stack Developer & Devops</p>
               <p className="text-[10px] sm:text-xs text-[var(--text-secondary)] flex items-center gap-1.5 mt-1">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Available
               </p>

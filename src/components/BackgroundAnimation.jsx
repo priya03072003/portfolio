@@ -2,32 +2,33 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const codeSnippets = [
-  'function init() {', 
-  'const data = await res.json();', 
-  'return <App />;', 
-  'export default App;', 
-  'console.log("Hello World");', 
+  'function init() {',
+  'const data = await res.json();',
+  'return <App />;',
+  'export default App;',
+  'console.log("Hello World");',
   'git commit -m "update"',
-  'docker build -t myapp .', 
-  'npm run build', 
+  'docker build -t myapp .',
+  'npm run build',
   'import { useState } from "react";',
-  'padding: 2rem;', 
-  '<div className="flex">', 
+  'padding: 2rem;',
+  '<div className="flex">',
   'border-radius: 50%;',
-  'while (true) {', 
-  'if (res.status === 200) {', 
+  'while (true) {',
+  'if (res.status === 200) {',
   'catch (err) {',
-  '<h1>Portfolio</h1>', 
-  'gap: 1rem;', 
+  '<h1>Portfolio</h1>',
+  'gap: 1rem;',
   'justify-content: center;',
-  'npm install framer-motion', 
-  'node server.js', 
+  'npm install framer-motion',
+  'node server.js',
   'SELECT * FROM users;',
-  'useEffect(() => {}, [])', 
-  'const [state, setState] = useState()', 
+  'useEffect(() => {}, [])',
+  'const [state, setState] = useState()',
   'return data;',
   '// Initialize application',
-  '<motion.div animate={{ x: 0 }} />'
+  '<motion.div animate={{ x: 0 }} />',
+  '<print>; programmer "PROGRAMMER"'
 ];
 
 const BackgroundAnimation = () => {
@@ -43,22 +44,24 @@ const BackgroundAnimation = () => {
   const columns = Array.from({ length: 25 }).map((_, i) => ({
     id: i,
     text: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
-    left: `${(i / 25) * 100}%`, // Distribute evenly across width
-    duration: Math.random() * 20 + 20, // 20-40s (slow falling)
+    left: `${(i / 25) * 100}%`,
+    duration: Math.random() * 20 + 20,
     delay: Math.random() * -40,
-    fontSize: Math.random() * 0.4 + 0.8, // 0.8 to 1.2 rem
-    opacity: Math.random() * 0.15 + 0.05, // 0.05 to 0.20
+    fontSize: Math.random() * 0.4 + 0.8,
+    opacity: Math.random() * 0.12 + 0.12, // 0.12 to 0.24 — visible on both light & dark
+    isPrimary: Math.random() > 0.5, // mix primary and secondary colors
   }));
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[var(--bg-color)]">
-      
+
       {/* Animated Subtle Grid Overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" 
+      <div
+        className="absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(to right, var(--color-primary) 1px, transparent 1px), linear-gradient(to bottom, var(--color-primary) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
+          opacity: 0.06,
         }}
       ></div>
 
@@ -74,12 +77,13 @@ const BackgroundAnimation = () => {
             ease: "linear",
             delay: col.delay,
           }}
-          className="absolute font-mono whitespace-nowrap text-[var(--color-primary)] select-none"
-          style={{ 
-            left: col.left, 
+          className="absolute font-mono font-semibold whitespace-nowrap select-none"
+          style={{
+            left: col.left,
             fontSize: `${col.fontSize}rem`,
             opacity: col.opacity,
-            textShadow: '0 0 10px var(--color-primary)'
+            color: 'var(--text-secondary)',
+            textShadow: '0 0 12px var(--text-secondary)',
           }}
         >
           {col.text}
@@ -87,8 +91,8 @@ const BackgroundAnimation = () => {
       ))}
 
       {/* Ambient glowing spots to give depth */}
-      <div className="absolute top-1/4 left-1/4 w-[30vw] h-[30vw] bg-[var(--color-primary)] opacity-[0.02] blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[var(--color-secondary)] opacity-[0.02] blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/4 w-[30vw] h-[30vw] bg-[var(--color-primary)] opacity-[0.04] blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[var(--color-secondary)] opacity-[0.04] blur-[120px] rounded-full pointer-events-none"></div>
     </div>
   );
 };

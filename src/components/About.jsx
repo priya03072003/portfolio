@@ -22,7 +22,6 @@ const About = () => {
               Driven by continuous learning, innovation, and building impactful digital solutions across Full Stack Development, DevOps, and AI Automation.
             </p>
           </div>
-
           <div data-aos="fade-left" className="space-y-4 md:space-y-6">
             <div className="p-6 md:p-8 rounded-3xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[var(--color-primary)] transition-colors shadow-sm">
               <h3 className="font-bold text-xl md:text-2xl mb-3 text-[var(--color-primary)]">Full Stack Development</h3>
@@ -30,14 +29,12 @@ const About = () => {
                 Building scalable and responsive web applications using React, Django, Tailwind CSS, and Redux while managing backend integration, deployment workflows, and performance optimization.
               </p>
             </div>
-
             <div className="p-6 md:p-8 rounded-3xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[var(--color-secondary)] transition-colors shadow-sm">
               <h3 className="font-bold text-xl md:text-2xl mb-3 text-[var(--color-secondary)]">DevOps Engineering</h3>
               <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
                 Managing CI/CD pipelines using Jenkins and GitLab, integrating SonarQube for code quality, and exploring Kubernetes, automation, and scalable deployment workflows.
               </p>
             </div>
-
             <div className="p-6 md:p-8 rounded-3xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[var(--color-primary)] transition-colors shadow-sm">
               <h3 className="font-bold text-xl md:text-2xl mb-3 text-[var(--color-primary)]">
                 AI Automation & Vibe Coding
@@ -46,7 +43,6 @@ const About = () => {
                 Building AI-powered automations using n8n and modern vibe coding workflows with tools like Stitch AI, OpenCode, and Claude CoWorker while integrating local files, APIs, and intelligent productivity systems.
               </p>
             </div>
-
           </div>
         </div>
       </div>
