@@ -2,7 +2,7 @@ import { Briefcase } from 'lucide-react';
 const Internships = () => {
   const internships = [
     {
-      role: "Junior Associate----",
+      role: "Junior Associate",
       company: "AV7SCM",
       duration: "January 2025 - Present",
       description: "Developing and maintaining full-stack web applications using React.js, Redux Toolkit (RTK Query, Async Thunk), Django REST Framework, and PostgreSQL. Built scalable RESTful APIs for secure data exchange and CRUD operations, implemented state management and real-time updates with RTK Query, and designed reusable UI components for high performance and maintainability. Managed end-to-end CI/CD pipelines using Jenkins and GitLab, automating code integration, quality analysis with SonarQube, and deployment workflows to streamline the software delivery process.",
