@@ -1,5 +1,6 @@
 import { ArrowRight, Download, Link, Code, Terminal } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 import { motion } from 'framer-motion';
 
 const Hero = () => {
@@ -16,7 +17,7 @@ const Hero = () => {
   const titleText = "Crafting Digital";
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center pt-12 sm:pt-16 md:pt-20 px-4 sm:px-6 md:px-8 lg:px-12 relative overflow-hidden">
       {/* Ambient glowing orbs */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
@@ -30,14 +31,14 @@ const Hero = () => {
       />
 
       {/* 
-        KEY FIX: Use lg:flex-row instead of md:flex-row.
-        At 768px (md/tablet) the layout stays stacked vertically.
-        Only at 1024px+ (lg/desktop) does it go side-by-side.
+        KEY FIX: Use md:flex-row for responsiveness.
+        At 768px (md/tablet) the layout switches to side-by-side.
+        This ensures proper display on medium screens.
       */}
-      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-12 z-10 w-full relative py-8 lg:py-0">
+      <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-12 z-10 w-full relative py-8 md:py-0 lg:py-0">
 
         {/* Left Content Column */}
-        <div className="text-center lg:text-left flex-1 w-full" style={{ perspective: "1000px" }}>
+        <div className="text-center lg:text-left flex-1 w-full md:w-1/2 mb-8 md:mb-0" style={{ perspective: "1000px" }}>
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -106,21 +107,14 @@ const Hero = () => {
               Resume <Download className="w-5 h-5" />
             </motion.a>
 
-            {/* Social Links */}
-            {/* <div className="flex items-center gap-3 sm:gap-4 sm:ml-2 sm:pl-4 sm:border-l border-[var(--border-color)]">
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
-                <Link className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className="flex items-center gap-3 sm:gap-4 sm:ml-2 sm:pl-4 sm:border-l border-[var(--border-color)]">
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} href="https://github.com/DigiDuchess/" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
+                <FaGithub className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" />
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} href="https://www.linkedin.com/in/priya-prakasam-524670269/" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors shadow-sm cursor-none">
+                <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
-                <motion.a whileHover={{ scale: 1.1, y: -2 }} href="#" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--color-secondary)] hover:border-[var(--color-secondary)] transition-colors shadow-sm cursor-none">
-                  <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.1, y: -2 }} href="https://github.com/DigiDuchess/" target="_blank" className="p-2 sm:p-3 rounded-full bg-[var(--surface-color)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[#000] hover:border-[#000] transition-colors shadow-sm cursor-none">
-                  <FaGithub className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-            </div> */}
+            </div>
           </motion.div>
         </div>
 
@@ -129,7 +123,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
-          className="flex-shrink-0 flex justify-center w-full lg:w-auto lg:justify-end"
+          className="flex-shrink-0 flex justify-center w-full md:w-1/2 md:justify-end mt-8 md:mt-0"
         >
           <div className="relative group">
 

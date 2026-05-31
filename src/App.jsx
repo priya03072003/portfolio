@@ -17,9 +17,9 @@ import { themeTokens } from './themes.js';
 function App() {
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem('portfolio-theme') || 'light';
+      return localStorage.getItem('portfolio-theme') || 'dark';
     } catch (e) {
-      return 'light';
+      return 'dark';
     }
   });
 

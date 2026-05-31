@@ -1,5 +1,4 @@
 import { Briefcase } from 'lucide-react';
-
 const Internships = () => {
   const internships = [
     {

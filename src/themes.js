@@ -9,8 +9,8 @@ export const themeTokens = {
     '--color-secondary': '#0ea5e9'
   },
   dark: {
-    '--bg-color': '#020617',
-    '--surface-color': '#0f172a',
+    '--bg-color': '#000000',
+    '--surface-color': '#111111',
     '--border-color': '#1e293b',
     '--text-primary': '#f8fafc',
     '--text-secondary': '#94a3b8',
