@@ -154,11 +154,19 @@ const Projects = () => {
           <h2 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Featured Projects</h2>
           <div className="w-24 h-1.5 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] md:mx-auto rounded-full mb-12"></div>
           {/* Framer Motion Layout Filters */}
-          <div className="flex flex-wrap items-center justify-start md:justify-center gap-4 bg-[var(--surface-color)] p-2 rounded-[2rem] border border-[var(--border-color)] w-max mx-auto overflow-hidden shadow-sm">
+          <div className="flex flex-nowrap items-center justify-start md:justify-center gap-4 bg-[var(--surface-color)] p-2 rounded-[2rem] border border-[var(--border-color)] w-full mx-auto overflow-x-auto sm:overflow-hidden shadow-sm">
             {categories.map((cat) => (
-              <button key={cat} onClick={() => setActiveFilter(cat)} className="relative px-6 py-2 text-sm font-bold rounded-full transition-colors cursor-none" style={{ color: activeFilter === cat ? 'white' : 'var(--text-secondary)' }}>
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`relative px-6 py-2 text-sm font-bold rounded-full transition-colors cursor-none ${activeFilter === cat ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--text-primary)]'}`}
+              >
                 {activeFilter === cat && (
-                  <motion.div layoutId="active-filter" className="absolute inset-0 bg-[var(--color-primary)] rounded-full -z-10 shadow-md" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+                  <motion.div
+                    layoutId="active-filter"
+                    className="absolute inset-0 bg-[var(--color-primary)] rounded-full -z-10 shadow-md"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
                 )}
                 <span className="relative z-10">{cat}</span>
               </button>
